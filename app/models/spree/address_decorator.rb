@@ -3,8 +3,10 @@ Spree::Address.class_eval do
 
   attr_accessible :user_id, :deleted_at
 
+
   def self.required_fields
     validator = Spree::Address.validators.find{|v| v.kind_of?(ActiveModel::Validations::PresenceValidator)}
+    validator.attributes.push(:phone)
     validator ? validator.attributes : []
   end
 
