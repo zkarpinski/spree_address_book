@@ -2,6 +2,11 @@
 
 (function($) {
   $(document).ready(function(){
+      
+    $("#order_email").bind('textchange', function (event, previousText) {
+      alert("DICKS");
+    });
+
     if ($(".select_address").length) {
       $('input#order_use_billing').unbind("click");
       $(".inner").hide();
@@ -52,4 +57,5 @@
     $("#" + address_type + " .inner input").prop("disabled", false);
     $("#" + address_type + " .inner select").prop("disabled", false);
   }
+
 })(jQuery);

@@ -1,0 +1,44 @@
+<% if @addresses and @addresses.size > 0 %>
+  <br/>
+  <br/>
+  <h5 class="sidebar-title"><span>Previous Addresses</span></h5>
+  <% @addresses.each do |a| %>
+    <div id="address-<%= a.id %>" class="admin-order-address">
+      <%= a %>
+      <br/>
+      Use as: 
+      <%= link_to "Billing", "#", onclick: "javascript:
+      $('#order_bill_address_attributes_firstname').attr('value', '#{a.firstname}');
+      $('#order_bill_address_attributes_lastname').attr('value', '#{a.lastname}');
+      $('#order_bill_address_attributes_company').attr('value', '#{a.company}');
+      $('#order_bill_address_attributes_address1').attr('value', '#{a.address1}');
+      $('#order_bill_address_attributes_address2').attr('value', '#{a.address2}');
+      $('#order_bill_address_attributes_city').attr('value', '#{a.city}');
+      $('#order_bill_address_attributes_zipcode').attr('value', '#{a.zipcode}');
+      $('#order_bill_address_attributes_country_id').attr('value', '#{a.country_id}');
+      $('#order_bill_address_attributes_state_id').attr('value', '#{a.state_id}');
+      $('#bcountry div a span').text('#{a.country.name}');
+      $('#bstate div a span').text('#{a.state.name}');
+      $('#order_bill_address_attributes_phone').attr('value', '#{a.phone}'); return false;" %>
+
+      OR
+      <%= link_to "Shipping", "#", onclick: "javascript:
+      $('input[id=order_use_billing]').attr('checked', false);
+      $('#shipping').show();
+      $('#shipping input').prop('disabled', false);
+      $('#shipping select').prop('disabled', false);
+      $('#order_ship_address_attributes_firstname').attr('value', '#{a.firstname}');
+      $('#order_ship_address_attributes_lastname').attr('value', '#{a.lastname}');
+      $('#order_ship_address_attributes_company').attr('value', '#{a.company}');
+      $('#order_ship_address_attributes_address1').attr('value', '#{a.address1}');
+      $('#order_ship_address_attributes_address2').attr('value', '#{a.address2}');
+      $('#order_ship_address_attributes_city').attr('value', '#{a.city}');
+      $('#order_ship_address_attributes_zipcode').attr('value', '#{a.zipcode}');
+      $('#order_ship_address_attributes_country_id').attr('value', '#{a.country_id}');
+      $('#order_ship_address_attributes_state_id').attr('value', '#{a.state_id}');
+      $('#scountry div a span').text('#{a.country.name}');
+      $('#sstate div a span').text('#{a.state.name}');
+      $('#order_ship_address_attributes_phone').attr('value', '#{a.phone}'); return false;" %>
+    </div>
+  <% end %>
+<% end %>

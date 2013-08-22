@@ -48,4 +48,18 @@ Spree::Address.class_eval do
       update_column :deleted_at, Time.now
     end
   end
+
+  def self.find_by_order_email(email)
+    addresses = Array.new
+    picked = Hash.new
+
+    find_by_sql(["select a.* from spree_addresses a, spree_orders o where a.deleted_at is null and (a.id = o.ship_address_id or a.id = o.bill_address_id) and o.email = ?", email]).each do |a|
+      unless picked[a.to_s]
+        addresses.push(a)
+        picked[a.to_s] = true
+      end
+    end
+
+    return addresses
+  end
 end
