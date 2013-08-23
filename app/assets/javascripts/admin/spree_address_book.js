@@ -6,7 +6,7 @@ var pollInterval = setInterval(function() {
     var val = $('#order_email').val();
 
     if (val != '' && val !== previousVal) {
-      $('#address-loader').load('/addresses/search', {'q': $("#order_email").val() }).fadeIn(1000); 
+      $('#address-loader').load('/admin/addresses/search', {'q': $("#order_email").val() }).fadeIn(1000); 
     }
 
     previousVal = val;

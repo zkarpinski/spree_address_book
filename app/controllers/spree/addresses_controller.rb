@@ -7,11 +7,6 @@ class Spree::AddressesController < Spree::StoreController
     redirect_to account_path
   end
 
-  def search
-    @addresses = Spree::Address.find_by_order_email(params[:q])
-    render layout: !request.xhr?
-  end
-
   def show
     redirect_to account_path
   end

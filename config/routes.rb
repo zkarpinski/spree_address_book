@@ -1,8 +1,7 @@
-Spree::Core::Engine.routes.prepend do
-  resources :addresses do
-    collection do
-      get :search
-      post :search
-    end
+Spree::Core::Engine.routes.draw do
+  resources :addresses
+
+  namespace :admin do
+    post 'addresses/search' => 'addresses#search', as: 'address_search'
   end
 end
