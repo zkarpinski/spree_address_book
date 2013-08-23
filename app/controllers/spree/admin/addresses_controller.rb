@@ -7,6 +7,13 @@ module Spree
         render layout: !request.xhr?
       end
 
+      def destroy
+        @address = Spree::Address.find(params[:id])
+        @address.destroy
+
+        flash[:success] = "Address removed"
+        redirect_to admin_orders_url
+      end
     end
   end
 end
