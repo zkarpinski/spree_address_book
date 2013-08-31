@@ -2,10 +2,6 @@
 
 (function($) {
   $(document).ready(function(){
-      
-    $("#order_email").bind('textchange', function (event, previousText) {
-      alert("DICKS");
-    });
 
     if ($(".select_address").length) {
       $('input#order_use_billing').unbind("click");
