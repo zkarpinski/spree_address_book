@@ -4,6 +4,10 @@ module Spree
 
       def search
         @addresses = Spree::Address.find_by_order_email(params[:q])
+        if not @addresses or @addresses.size == 0
+          @user = Spree::User.find_by_email(params[:q])
+          @addresses = @user.addresses
+        end
         render layout: !request.xhr?
       end
 
