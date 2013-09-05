@@ -27,7 +27,7 @@
         $('#order_bill_address_attributes_country_id').attr('value', '#{a.country_id}');
         $('#order_bill_address_attributes_state_id').attr('value', '#{a.state_id}');
         $('#bcountry div a span').text('#{a.country.name}');
-        $('#bstate div a span').text('#{a.state.name}');
+        $('#bstate div a span').text('#{a.state ? a.state.name : a.state_name}');
         $('#order_bill_address_attributes_phone').attr('value', '#{a.phone}'); return false;" %>
         <br/>
         <%= link_to "Shipping", "#", onclick: "javascript:
@@ -45,7 +45,7 @@
         $('#order_ship_address_attributes_country_id').attr('value', '#{a.country_id}');
         $('#order_ship_address_attributes_state_id').attr('value', '#{a.state_id}');
         $('#scountry div a span').text('#{a.country.name}');
-        $('#sstate div a span').text('#{a.state.name}');
+        $('#sstate div a span').text('#{a.state ? a.state.name : a.state_name}');
         $('#order_ship_address_attributes_phone').attr('value', '#{a.phone}'); return false;" %>
         <br/>
         <%= link_to "Delete", 
