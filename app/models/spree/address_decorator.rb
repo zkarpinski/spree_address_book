@@ -1,8 +1,11 @@
 Spree::Address.class_eval do
   belongs_to :user, :class_name => Spree.user_class.to_s
-
+  
   attr_accessible :user_id, :deleted_at
 
+  def orders
+    Spree::Order.where("ship_address_id = ? or bill_address_id = ? and state = ?", id, id, "complete")
+  end
 
   def self.required_fields
     validator = Spree::Address.validators.find{|v| v.kind_of?(ActiveModel::Validations::PresenceValidator)}
@@ -19,7 +22,9 @@ Spree::Address.class_eval do
 
   # can modify an address if it's not been used in an completed order
   def editable?
-    new_record? || (shipments.empty? && Spree::Order.complete.where("bill_address_id = ? OR ship_address_id = ?", self.id, self.id).count == 0)
+    new_record? || 
+      (shipments.empty? && 
+       orders.size == 0)
   end
 
   def can_be_deleted?
