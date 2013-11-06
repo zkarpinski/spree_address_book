@@ -33,7 +33,8 @@ Spree::Address.class_eval do
       "#{address1}",
       "#{address2}",
       "#{city}, #{state ? state.abbr : state_name} #{zipcode}",
-      "#{country ? country.iso3 : ""}"
+      "#{country ? country.iso3 : ""}",
+      "#{phone}"
     ].reject(&:empty?).join("<br/>").html_safe
   end
 
