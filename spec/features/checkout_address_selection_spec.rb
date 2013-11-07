@@ -8,7 +8,7 @@ describe "Address selection during checkout" do
   describe "as guest user" do
     include_context "checkout with product"
     before(:each) do
-      click_link "Checkout"
+      click_button "checkout-link"
       fill_in "order_email", :with => "guest@example.com"
       click_button "Continue"
     end
@@ -42,7 +42,7 @@ describe "Address selection during checkout" do
       u.save
       u
     end
-    before(:each) { click_link "Checkout"; sign_in!(user); }
+    before(:each) { click_button "checkout-link"; sign_in!(user); }
   
     it "should not see billing or shipping address form" do
       find("#billing .inner").should_not be_visible
