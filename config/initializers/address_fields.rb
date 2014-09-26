@@ -1,1 +1,1 @@
-ADDRESS_FIELDS = ["firstname", "lastname", "company", "address1", "address2",  "country", "state", "city", "zipcode", "phone"]
+ADDRESS_FIELDS = ["firstname", "lastname", "company", "address1", "address2", "city", "country", "state", "zipcode", "phone"]
