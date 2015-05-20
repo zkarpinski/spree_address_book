@@ -1,0 +1,10 @@
+<div class="user-address">
+	<%= address %>
+
+	<div class="user-address-links">
+		<%= link_to t(:edit), edit_address_path(address) %> 
+		&ndash;
+		<%= link_to t(:remove), address_path(address), :method => :delete, :confirm => t(:are_you_sure) %>
+	</div>
+
+</div>
