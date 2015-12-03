@@ -1,17 +1,22 @@
+<br/>
+<br/>
+<br/>
+<h5 class="sidebar-title">
+  <span>Previous Addresses
+  <%= link_to_with_icon("icon-circle-arrow-up", 
+                                  "Expand", 
+                                  "#",
+                                  onclick: "javascript:expand_address_loader();", 
+                                  class: "expand-address-loader",
+                                  no_text: true) %>
+  </span>  
+</h5>
+
+<input type='text' name='order_address_search' id='order_address_search' placeholder='Search addresses' size='30' value='<%= params[:a].present? ? params[:a] : '' %>'/>
+
+
 <% if @addresses and @addresses.size > 0 %>
-  <br/>
-  <br/>
-  <br/>
-  <h5 class="sidebar-title">
-    <span>Previous Addresses
-    <%= link_to_with_icon("icon-circle-arrow-up", 
-                                    "Expand", 
-                                    "#",
-                                    onclick: "javascript:expand_address_loader();", 
-                                    class: "expand-address-loader",
-                                    no_text: true) %>
-    </span>  
-  </h5>
+
   <% @addresses.each do |a| %>
     <div id="address-<%= a.id %>" class="admin-order-address">
       <div class="admin-order-address-action">
@@ -61,4 +66,6 @@
       <br/>
     </div>
   <% end %>
+<% else %>
+  <p>No addresses found</p>
 <% end %>
