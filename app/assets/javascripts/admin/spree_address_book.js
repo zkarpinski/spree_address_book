@@ -13,6 +13,10 @@ $(document).ready(function() {
     var previousAddressSearch = "";
     var form = this;
 
+    $('#customer_search').change(function() {
+      $('#address-loader').load('/admin/addresses/search', {'q': $("#order_email").val() }).fadeIn(1000);
+    });
+
     $('#order_email').keyup(function() {
       clearTimeout(email_timerid);
 
