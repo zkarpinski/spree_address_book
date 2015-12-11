@@ -1,5 +1,12 @@
 //$(window).focus(function() { previousVal = ""; previousAddressSearch = ""; });
 
+function expand_address_loader() {
+  $('#order_tab_summary').slideUp(1000);
+  $('aside nav.menu').slideUp(1000);
+  $('#address-loader').css('max-height', '2000px');
+  $('#address-loader').css('height', 'auto');
+  return false;
+}
 
 $(document).ready(function() {
   var admin_edit_cust_details_reg = /\/admin\/orders\/([^\/]+)\/customer/;
@@ -44,13 +51,6 @@ $(document).ready(function() {
       }, 2000);
     });
 
-    function expand_address_loader() {
-      $('#order_tab_summary').slideUp(1000);
-      $('aside nav.menu').slideUp(1000);
-      $('#address-loader').css('max-height', '2000px');
-      $('#address-loader').css('height', 'auto');
-      return false;
-    }
     if($('#order_email').val() !== "") {
       $('#address-loader').load('/admin/addresses/search', {'q': $("#order_email").val() }).fadeIn(1000);
     }
