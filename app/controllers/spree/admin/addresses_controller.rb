@@ -5,9 +5,9 @@ module Spree
       def search
         @addresses = Spree::Address.find_by_order_email(params)
         if not @addresses or @addresses.size == 0
-          @user = Spree::User.find_by_email(params[:q])
+          @user = Spree::User.where("email ilike ?", "#{params[:q]}%").first
 
-          if @user
+          if @user.present?
             @addresses = @user.address_search(params)
           end
         end

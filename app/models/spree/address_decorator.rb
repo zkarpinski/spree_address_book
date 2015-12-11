@@ -61,7 +61,7 @@ Spree::Address.class_eval do
     addresses = Array.new
     picked = Hash.new
     search_string = ""
-    search_parameters = [email]
+    search_parameters = ["#{email}%"]
 
     if params[:a].present?
       search_string = "and (concat_ws(' '::text, a.firstname, a.lastname) ilike ? or a.lastname ilike ? or a.address1 ilike ? or a.address2 ilike ? or a.company ilike ? or a.city ilike ? or a.zipcode ilike ?) "
@@ -70,7 +70,7 @@ Spree::Address.class_eval do
       end
     end
 
-    find_by_sql(["select a.* from spree_addresses a, spree_orders o where a.deleted_at is null and (a.id = o.ship_address_id or a.id = o.bill_address_id) and o.email = ?  #{search_string}", *search_parameters]).each do |a|
+    find_by_sql(["select a.* from spree_addresses a, spree_orders o where a.deleted_at is null and (a.id = o.ship_address_id or a.id = o.bill_address_id) and o.email ilike ?  #{search_string}", *search_parameters]).each do |a|
       unless picked[a.to_s]
         addresses.push(a)
         picked[a.to_s] = true
