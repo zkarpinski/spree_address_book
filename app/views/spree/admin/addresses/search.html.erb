@@ -30,11 +30,12 @@
         $('#order_bill_address_attributes_city').attr('value', '#{j(a.city)}');
         $('#order_bill_address_attributes_zipcode').attr('value', '#{j(a.zipcode)}');
         $('#order_bill_address_attributes_country_id').attr('value', '#{a.country_id}');
-        $('#order_bill_address_attributes_state_id').attr('value', '#{a.state_id}');
         $('#bcountry div a span').text('#{a.country.name}'); update_state('b');
         $('#bstate div a span').text('#{a.state ? a.state.name : nil}');
+        $('#order_bill_address_attributes_state_id').attr('value', '#{a.state_id}');
         $('#order_bill_address_attributes_state_name').attr('value', '#{!a.state ? a.state_name : nil}');
-        $('#order_bill_address_attributes_phone').attr('value', '#{a.phone}'); return false;" %>
+        $('#order_bill_address_attributes_phone').attr('value', '#{a.phone}'); 
+        return false;" %>
         <br/>
         <%= link_to "Shipping", "#", onclick: "javascript:
         $('input[id=order_use_billing]').attr('checked', false);
@@ -49,10 +50,12 @@
         $('#order_ship_address_attributes_city').attr('value', '#{j(a.city)}');
         $('#order_ship_address_attributes_zipcode').attr('value', '#{j(a.zipcode)}');
         $('#order_ship_address_attributes_country_id').attr('value', '#{a.country_id}');
-        $('#order_ship_address_attributes_state_id').attr('value', '#{a.state_id}');
         $('#scountry div a span').text('#{a.country.name}'); update_state('s');
         $('#sstate div a span').text('#{a.state ? a.state.name : nil}');
         $('#order_ship_address_attributes_state_name').attr('value', '#{!a.state ? a.state_name : nil}');
+        $('#order_ship_address_attributes_state_id').attr('value', '#{a.state_id}');
+        $('#country-name-holder').val('#{a.country.name}');
+        $('#state-name-holder').val('#{a.state ? a.state.name : a.state_name}');
         $('#order_ship_address_attributes_phone').attr('value', '#{a.phone}'); return false;" %>
         <br/>
         <%= link_to "Delete", 
