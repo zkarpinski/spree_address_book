@@ -15,6 +15,7 @@ $(document).ready(function() {
   {
     var previousVal = "";
     var email_timerid;
+    var customer_number_timerid;
 
     var address_timerid;
     var previousAddressSearch = "";
@@ -24,17 +25,34 @@ $(document).ready(function() {
       $('#address-loader').load('/admin/addresses/search', {'q': $("#order_email").val() }).fadeIn(1000);
     });
 
+    $('#customer_email_number').keyup(function() {
+      if($('#order_email').val() === '') {
+        clearTimeout(customer_number_timerid);
+
+        customer_number_timerid = setTimeout(function() {
+          var val = $('#customer_email_number').val();
+
+          if (val !== "" && val !== previousVal && val.length > 4) {
+            $('#address-loader').load('/admin/addresses/search', {'q': $("#customer_email_number").val(), 'a': $('#order_address_search').val() }).fadeIn(1000);
+            previousVal = val;
+          }
+        }, 2000);
+      }
+    });
+
     $('#order_email').keyup(function() {
-      clearTimeout(email_timerid);
+      if($('#customer_email_number').val() === '') {
+        clearTimeout(email_timerid);
 
-      email_timerid = setTimeout(function() {
-        var val = $('#order_email').val();
+        email_timerid = setTimeout(function() {
+          var val = $('#order_email').val();
 
-        if (val !== "" && val !== previousVal) {
-          $('#address-loader').load('/admin/addresses/search', {'q': $("#order_email").val(), 'a': $('#order_address_search').val() }).fadeIn(1000);
-          previousVal = val;
-        }
-      }, 2000);
+          if (val !== "" && val !== previousVal && val.length > 4) {
+            $('#address-loader').load('/admin/addresses/search', {'q': $("#order_email").val(), 'a': $('#order_address_search').val() }).fadeIn(1000);
+            previousVal = val;
+          }
+        }, 2000);
+      }
     });
 
 

@@ -56,11 +56,25 @@ Spree::Address.class_eval do
     end
   end
 
+  def self.find_by_customer_id(params)
+    email = ''
+    customer_number = params[:q].to_i
+
+    customer_email = Spree::CustomerEmail.where(number: customer_number).first
+
+    if customer_email.present?
+      email = customer_email.email
+    end
+
+    Spree::Address.find_by_order_email(email)
+  end
+
   def self.find_by_order_email(params)
     email = params[:q]
-    addresses = Array.new
-    picked = Hash.new
-    search_string = ""
+
+    addresses = []
+    picked = {}
+    search_string = ''
     search_parameters = ["#{email}%"]
 
     if params[:a].present?
