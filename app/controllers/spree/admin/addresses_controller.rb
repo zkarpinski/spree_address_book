@@ -11,7 +11,13 @@ module Spree
           params[:q] = @customer_email.email
         else
           @user = Spree::User.where('email ilike ?', "%#{query}%").first
-          @customer_email = @user.customer_email
+
+          if @user.present?
+            @customer_email = @user.customer_email
+          else
+            @customer_email = Spree::CustomerEmail.where(email: query).first
+          end
+          
         end
 
         @addresses = Spree::Address.find_by_order_email(params)
